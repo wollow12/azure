@@ -9,17 +9,17 @@ trigger:
 pool:
   vmImage: ubuntu-latest
   name: default
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: dotnet build
-  displayName: 'dotnet build '
   
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+steps:
+- task: UseDotNet@2
+  inputs:
+    version: '8.x'
+    includePreviewVersions: true # Required for preview versions
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    command: 'build'
 
 - publish: $(System.DefaultWorkingDirectory)
   artifact: Hello-world
