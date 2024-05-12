@@ -20,3 +20,9 @@ steps:
 
 - publish: $(System.DefaultWorkingDirectory)
   artifact: Hello-world
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    publishLocation: 'pipeline'
+    artifact: 'drop'
