@@ -13,6 +13,9 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+  
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
@@ -20,9 +23,3 @@ steps:
 
 - publish: $(System.DefaultWorkingDirectory)
   artifact: Hello-world
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    publishLocation: 'pipeline'
-    artifact: 'drop'
