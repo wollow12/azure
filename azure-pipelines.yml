@@ -11,10 +11,13 @@ pool:
   name: default
   
 steps:
-- task: UseDotNet@2
+# The first task is the dotnet command build, pointing to our csproj file
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
   inputs:
-    version: '8.x'
-    includePreviewVersions: true # Required for preview versions
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+    projects: 'sample1.csproj'
 
 # The first task is the dotnet command build, pointing to our csproj file
 - task: DotNetCoreCLI@2
