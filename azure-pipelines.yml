@@ -26,7 +26,7 @@ steps:
   inputs:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
-    packagesToPack: 'sample1.csproj'
+    packagesToPack: './sample1.csproj'
 
 - script: dotnet nuget push --source "polonskyzation" --api-key az $(System.DefaultWorkingDirectory)
   displayName: 'dotnet nuget push'
