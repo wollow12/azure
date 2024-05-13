@@ -16,13 +16,24 @@ steps:
     version: '8.x'
     includePreviewVersions: true # Required for preview versions
 
+# The first task is the dotnet command build, pointing to our csproj file
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+    projects: 'sample1.csproj'
 
-- publish: $(System.DefaultWorkingDirectory)
-  artifact: Hello-world
+# The second task is dotnet pack command again pointing to the csproj file
+# The nobuild means the project will not be compiled before running pack, because its already built in above step
+- task: DotNetCoreCLI@2
+  displayName: "dotnet pack"
+  inputs:
+    command: 'pack'
+    arguments: '--configuration $(buildConfiguration)'
+    packagesToPack: 'sample1.csproj'
+    nobuild: true
+    versioningScheme: 'off'
 
 - script: dotnet nuget push --source "polonskyzation" --api-key az $(System.DefaultWorkingDirectory)
   displayName: 'dotnet nuget push'
