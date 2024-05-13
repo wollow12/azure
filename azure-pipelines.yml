@@ -24,8 +24,5 @@ steps:
 - publish: $(System.DefaultWorkingDirectory)
   artifact: Hello-world
 
-- script: dotnet restore --interactive
-  displayName: 'dotnet restore'
-
 - script: dotnet nuget push --source "polonskyzation" --api-key az $(System.DefaultWorkingDirectory)
   displayName: 'dotnet nuget push'
