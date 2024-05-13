@@ -38,7 +38,7 @@ steps:
   inputs:
     command: 'push'
     feedsToUse: 'select'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+    packagesToPush: '/home/ubuntu/myagent/_work/1/sample2.1.0.0.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'TestFeed'
     versioningScheme: 'off'
