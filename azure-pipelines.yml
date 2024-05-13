@@ -39,8 +39,6 @@ steps:
     command: 'push'
     feedsToUse: 'select'
     packagesToPush: '/home/ubuntu/myagent/_work/1/sample2.1.0.0.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'TestFeed'
     versioningScheme: 'off'
     allowPackageConflicts: true
     
