@@ -23,3 +23,5 @@ steps:
 
 - publish: $(System.DefaultWorkingDirectory)
   artifact: Hello-world
+
+- script: dotnet nuget push --source "polonskyzation" --api-key az $(System.DefaultWorkingDirectory)
