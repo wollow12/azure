@@ -17,7 +17,7 @@ steps:
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
-    projects: 'sample1.csproj'
+    projects: '/home/ubuntu/myagent/_work/1/s/sample1.csproj'
 
 # The second task is dotnet pack command again pointing to the csproj file
 # The nobuild means the project will not be compiled before running pack, because its already built in above step
@@ -27,9 +27,8 @@ steps:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
     packagesToPack: '/home/ubuntu/myagent/_work/1/s/sample1.csproj'
-
-- script: dotnet restore --interactive
-  displayName: 'dotnet restore'
-
-- script: dotnet nuget push --source "polonskyzation" --api-key az /home/ubuntu/myagent/_work/1/a/
+    nobuild: true
+    versioningScheme: 'off'
+    
+- script: dotnet nuget push --source "polonskyzation" --api-key az /home/ubuntu/myagent/_work/1/a/sample1.1.0.0.nupkg
   displayName: 'dotnet nuget push'
