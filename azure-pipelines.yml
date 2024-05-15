@@ -68,7 +68,3 @@ steps:
 #  displayName: 'dotnet nuget push'
 - script: dotnet nuget push --source "polonskyzation" --api-key az /home/ubuntu/myagent/_work/1/s/bin/Release/sample1.1.0.$(Build.BuildId).nupkg
   displayName: 'publish NuGet Package'
-
-- task: SonarQubePublish@5
-  inputs:
-    pollingTimeoutSec: '300'
