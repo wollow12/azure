@@ -47,5 +47,5 @@ steps:
     
 #- script: dotnet nuget push --source "polonskyzation" --api-key abc /home/ubuntu/myagent/_work/1/a/
 #  displayName: 'dotnet nuget push'
-- script: dotnet nuget push --source "polonskyzation" --api-key az /home/ubuntu/myagent/_work/1/a/
+- script: dotnet nuget push --source "polonskyzation" --api-key az /home/ubuntu/myagent/_work/1/a/sample1.1.0.$(Build.BuildId).nupkg
   displayName: 'publish NuGet Package'
