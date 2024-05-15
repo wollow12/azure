@@ -16,13 +16,13 @@ variables:
   artifactVersion: ''
 
 steps:
-
 - task: SonarQubePrepare@5
   inputs:
-    SonarQube: 'SQconnection'
+    SonarQube: 'lastSQ'
     scannerMode: 'MSBuild'
-    projectKey: 'AzureSonar'
-    projectName: 'AzureSonar'
+    projectKey: 'hello_world_hello_world_b9778a97-07fa-4e52-b44b-795a3cd5a94f'
+    projectName: 'hello world'
+
 # The first task is the dotnet command build, pointing to our csproj file
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
