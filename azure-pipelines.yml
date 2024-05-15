@@ -16,13 +16,13 @@ variables:
   artifactVersion: ''
 
 steps:
+
 - task: SonarQubePrepare@5
   inputs:
-    SonarQube: 'SonarQ'
+    SonarQube: 'SQconnection'
     scannerMode: 'MSBuild'
-    projectKey: 'azure'
-    projectName: 'azure_hello'
-    
+    projectKey: 'AzureSonar'
+    projectName: 'AzureSonar'
 # The first task is the dotnet command build, pointing to our csproj file
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
@@ -33,7 +33,7 @@ steps:
 
 - task: SonarQubeAnalyze@5
   inputs:
-    jdkversion: 'JAVA_HOME'
+    jdkversion: 'JAVA_HOME_17_X64'
 
 - script: |
     major_version=${env:majorVersion}
