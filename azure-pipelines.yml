@@ -56,6 +56,13 @@ steps:
 - script: dotnet pack -p Version=1.0.$(Build.BuildId)
   displayName: 'Create NuGet Package'    
     
+- task: artifactstagger@1
+  inputs:
+    EndpointType: 'integrated'
+    StageNameTag: false
+    CustomTags: $(branchName)_$(app_version)
+  displayName: 'Tag the Buildid'
+
 #- script: dotnet nuget push --source "polonskyzation" --api-key abc /home/ubuntu/myagent/_work/1/a/
 #  displayName: 'dotnet nuget push'
 - script: dotnet nuget push --source "polonskyzation" --api-key az /home/ubuntu/myagent/_work/1/s/bin/Release/sample1.1.0.$(Build.BuildId).nupkg
