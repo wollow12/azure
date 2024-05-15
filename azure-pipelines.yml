@@ -14,6 +14,7 @@ variables:
   majorVersion: '1'
   minorVersion: '0'
   artifactVersion: ''
+  branchName:  $(Build.SourceBranchName) 
 
 steps:
 - task: SonarQubePrepare@5
@@ -60,7 +61,7 @@ steps:
   inputs:
     EndpointType: 'integrated'
     StageNameTag: false
-    CustomTags: $(branchName)_$(app_version)
+    CustomTags: $(branchName)_$(artifactVersion)
   displayName: 'Tag the Buildid'
 
 #- script: dotnet nuget push --source "polonskyzation" --api-key abc /home/ubuntu/myagent/_work/1/a/
