@@ -35,13 +35,17 @@ steps:
   
 # The second task is dotnet pack command again pointing to the csproj file
 # The nobuild means the project will not be compiled before running pack, because its already built in above step
-- task: DotNetCoreCLI@2
-  displayName: "dotnet pack"
-  inputs:
-    command: 'pack'
-    arguments: '--configuration $(buildConfiguration)'
-    packagesToPack: '/home/ubuntu/myagent/_work/1/s/sample1.csproj'
+#- task: DotNetCoreCLI@2
+#  displayName: "dotnet pack"
+#  inputs:
+#    command: 'pack'
+#    arguments: '--configuration $(buildConfiguration)'
+#    packagesToPack: '/home/ubuntu/myagent/_work/1/s/sample1.csproj'
+
+- script: dotnet pack -p Version=1.0.$(Build.BuildId)
+  displayName: 'Create NuGet Package'    
     
-    
-- script: dotnet nuget push --source "polonskyzation" --api-key abc /home/ubuntu/myagent/_work/1/a/
-  displayName: 'dotnet nuget push'
+#- script: dotnet nuget push --source "polonskyzation" --api-key abc /home/ubuntu/myagent/_work/1/a/
+#  displayName: 'dotnet nuget push'
+- script: dotnet nuget push --source "polonskyzation" --api-key az /home/ubuntu/myagent/_work/1/a/
+  displayName: 'publish NuGet Package'
