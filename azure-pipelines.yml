@@ -24,6 +24,16 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
     projects: '/home/ubuntu/myagent/_work/1/s/sample1.csproj'
 
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'SonarQ'
+    scannerMode: 'MSBuild'
+    projectKey: 'azure'
+    projectName: 'azure_hello'
+
 - script: |
     major_version=${env:majorVersion}
     minor_version=${env:minorVersion}
@@ -49,3 +59,7 @@ steps:
 #  displayName: 'dotnet nuget push'
 - script: dotnet nuget push --source "polonskyzation" --api-key az /home/ubuntu/myagent/_work/1/s/bin/Release/sample1.1.0.$(Build.BuildId).nupkg
   displayName: 'publish NuGet Package'
+
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
